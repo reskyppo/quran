@@ -24,14 +24,38 @@ class Body extends StatelessWidget {
                 return Container(
                   height: size.height * 0.15,
                   child: Card(
-                    elevation: 5,
-                    child: Column(
+                    elevation: 2,
+                    child: Row(
                       children: [
-                        Text(snapshot.data['data'][index]['name']['short']),
-                        Text(snapshot.data['data'][index]['name']
-                            ['transliteration']['id']),
-                        Text(snapshot.data['data'][index]['name']['translation']
-                            ['id']),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 3, color: Colors.deepPurple),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Text(
+                              snapshot.data['data'][index]['number'].toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.deepPurple),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(snapshot.data['data'][index]['name']
+                                ['transliteration']['id']),
+                            Text(snapshot.data['data'][index]['name']
+                                ['translation']['id']),
+                          ],
+                        ),
                       ],
                     ),
                   ),
