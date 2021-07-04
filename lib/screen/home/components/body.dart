@@ -32,17 +32,12 @@ class Body extends StatelessWidget {
                           width: 30,
                           height: 30,
                           decoration: BoxDecoration(
-                            border:
-                                Border.all(width: 3, color: Colors.deepPurple),
-                            shape: BoxShape.circle,
-                          ),
+                              shape: BoxShape.circle, color: Colors.deepPurple),
                           child: Center(
                             child: Text(
                               snapshot.data['data'][index]['number'].toString(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.deepPurple),
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.white),
                             ),
                           ),
                         ),
@@ -50,12 +45,35 @@ class Body extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(snapshot.data['data'][index]['name']
-                                ['transliteration']['id']),
-                            Text(snapshot.data['data'][index]['name']
-                                ['translation']['id']),
+                            Text(
+                              snapshot.data['data'][index]['name']
+                                  ['transliteration']['id'],
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              child: Text(
+                                snapshot.data['data'][index]['revelation']['id']
+                                        .toUpperCase() +
+                                    "  " +
+                                    snapshot.data['data'][index]
+                                            ['numberOfVerses']
+                                        .toString() +
+                                    " VERSES",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            )
                           ],
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(left: size.width * 0.3),
+                          child: Text(
+                            snapshot.data['data'][index]['name']['short'],
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w700),
+                          ),
+                        )
                       ],
                     ),
                   ),
