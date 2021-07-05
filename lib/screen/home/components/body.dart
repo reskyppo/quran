@@ -27,7 +27,9 @@ class Body extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DetailsScreen()));
+                            builder: (context) => DetailsScreen(
+                                idx: snapshot.data['data'][index]['number']
+                                    .toString())));
                   },
                   child: Container(
                     height: size.height * 0.15,
