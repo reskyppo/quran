@@ -3,14 +3,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   final String idx;
 
   const DetailsScreen({Key key, @required this.idx}) : super(key: key);
 
   @override
+  _DetailsScreenState createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  bool isPlaying = false;
+
+  @override
   Widget build(BuildContext context) {
-    String url = 'https://api.quran.sutanlab.id/surah/' + idx;
+    String url = 'https://api.quran.sutanlab.id/surah/' + widget.idx;
     Future fetchAPI() async {
       var res = await http.get(Uri.parse(url));
       return json.decode(res.body);
@@ -49,6 +56,8 @@ class DetailsScreen extends StatelessWidget {
                                       color: Colors.deepPurple.shade50,
                                     ),
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
                                           margin: EdgeInsets.symmetric(
@@ -71,7 +80,18 @@ class DetailsScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        Text(index.toString()),
+                                        IconButton(
+                                            icon: Icon(
+                                              isPlaying
+                                                  ? Icons.pause
+                                                  : Icons.play_arrow_outlined,
+                                              color: Colors.deepPurple.shade400,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                isPlaying = !isPlaying;
+                                              });
+                                            })
                                       ],
                                     )),
                                 Text(index.toString()),
