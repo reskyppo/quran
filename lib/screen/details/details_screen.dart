@@ -14,12 +14,17 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   bool isPlaying = false;
+  int idxPlaying;
+  String title = "...";
 
   @override
   Widget build(BuildContext context) {
     String url = 'https://api.quran.sutanlab.id/surah/' + widget.idx;
     Future fetchAPI() async {
       var res = await http.get(Uri.parse(url));
+      setState(() {
+        title = json.decode(res.body)['data']['name']['transliteration']['id'];
+      });
       return json.decode(res.body);
     }
 
@@ -27,8 +32,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("Al Qur-an")),
-          automaticallyImplyLeading: false,
+          title: Text(title),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
         ),
         body: FutureBuilder(
             future: fetchAPI(),
@@ -82,14 +88,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         ),
                                         IconButton(
                                             icon: Icon(
-                                              isPlaying
+                                              idxPlaying == index
                                                   ? Icons.pause
                                                   : Icons.play_arrow_outlined,
                                               color: Colors.deepPurple.shade400,
                                             ),
                                             onPressed: () {
                                               setState(() {
-                                                isPlaying = !isPlaying;
+                                                idxPlaying = index;
                                               });
                                             })
                                       ],
@@ -100,7 +106,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ));
                     });
               } else {
-                return Text("err");
+                return Text("...");
               }
             }));
   }
