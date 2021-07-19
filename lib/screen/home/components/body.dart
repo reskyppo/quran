@@ -36,57 +36,66 @@ class Body extends StatelessWidget {
                     child: Card(
                       elevation: 2,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20),
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.deepPurple),
-                            child: Center(
-                              child: Text(
-                                snapshot.data['data'][index]['number']
-                                    .toString(),
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
-                              ),
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
+                          Row(
                             children: [
-                              Text(
-                                snapshot.data['data'][index]['name']
-                                    ['transliteration']['id'],
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w700),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 8),
-                                child: Text(
-                                  snapshot.data['data'][index]['revelation']
-                                              ['id']
-                                          .toUpperCase() +
-                                      "  " +
-                                      snapshot.data['data'][index]
-                                              ['numberOfVerses']
-                                          .toString() +
-                                      " VERSES",
-                                  style: TextStyle(fontSize: 12),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.deepPurple),
+                                child: Center(
+                                  child: Text(
+                                    snapshot.data['data'][index]['number']
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  ),
                                 ),
-                              )
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    snapshot.data['data'][index]['name']
+                                        ['transliteration']['id'],
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 8),
+                                    child: Text(
+                                      snapshot.data['data'][index]['revelation']
+                                                  ['id']
+                                              .toUpperCase() +
+                                          "  " +
+                                          snapshot.data['data'][index]
+                                                  ['numberOfVerses']
+                                              .toString() +
+                                          " VERSES",
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: size.width * 0.3),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 28),
                             child: Text(
                               snapshot.data['data'][index]['name']['short'],
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w700),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              textAlign: TextAlign.end,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
