@@ -46,7 +46,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       return Padding(
                           padding: EdgeInsets.all(size.width * 0.05),
                           child: Container(
-                            height: size.height * 0.1,
                             decoration: BoxDecoration(
                                 border: Border(
                               bottom: BorderSide(
@@ -81,7 +80,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                                       ['inSurah']
                                                   .toString(),
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 12,
                                                   color: Colors.white),
                                             ),
                                           ),
@@ -100,7 +99,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             })
                                       ],
                                     )),
-                                Text(index.toString()),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      child: Flexible(
+                                        fit: FlexFit.loose,
+                                        child: Text(
+                                          snapshot.data['data']['verses'][index]
+                                              ['text']['arab'],
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        snapshot.data['data']['verses'][index]
+                                            ['text']['transliteration']['en'],
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ));
