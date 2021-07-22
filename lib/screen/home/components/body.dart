@@ -3,8 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quran/screen/details/details_screen.dart';
+import 'package:quran/utils/colors_utils.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   String url = 'https://api.quran.sutanlab.id/surah';
 
   Future fetchAPI() async {
@@ -46,7 +52,7 @@ class Body extends StatelessWidget {
                                 height: 30,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Colors.deepPurple),
+                                    color: ColorsUtils.Primary),
                                 child: Center(
                                   child: Text(
                                     snapshot.data['data'][index]['number']
