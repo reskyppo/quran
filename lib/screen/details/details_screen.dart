@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quran/utils/colors_utils.dart';
 
 class DetailsScreen extends StatefulWidget {
   final String idx;
@@ -32,7 +33,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: ColorsUtils.Primary),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Text(
+            title,
+            style: TextStyle(color: ColorsUtils.Primary),
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
         ),
@@ -49,8 +57,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             decoration: BoxDecoration(
                                 border: Border(
                               bottom: BorderSide(
-                                  width: 1.5,
-                                  color: Colors.deepPurple.shade200),
+                                  width: 1.5, color: ColorsUtils.Text),
                             )),
                             child: Column(
                               children: [
@@ -72,7 +79,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                           height: 24,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Colors.deepPurple),
+                                              color: ColorsUtils.Text),
                                           child: Center(
                                             child: Text(
                                               snapshot.data['data']['verses']
@@ -85,18 +92,31 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             ),
                                           ),
                                         ),
-                                        IconButton(
-                                            icon: Icon(
-                                              idxPlaying == index
-                                                  ? Icons.pause
-                                                  : Icons.play_arrow_outlined,
-                                              color: Colors.deepPurple.shade400,
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.share,
+                                              color: ColorsUtils.Text,
                                             ),
-                                            onPressed: () {
-                                              setState(() {
-                                                idxPlaying = index;
-                                              });
-                                            })
+                                            IconButton(
+                                                icon: Icon(
+                                                  idxPlaying == index
+                                                      ? Icons.pause
+                                                      : Icons
+                                                          .play_arrow_outlined,
+                                                  color: ColorsUtils.Text,
+                                                ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    idxPlaying = index;
+                                                  });
+                                                }),
+                                            Icon(
+                                              Icons.bookmark_outline,
+                                              color: ColorsUtils.Text,
+                                            )
+                                          ],
+                                        )
                                       ],
                                     )),
                                 Row(
@@ -108,7 +128,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         child: Text(
                                           snapshot.data['data']['verses'][index]
                                               ['text']['arab'],
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: ColorsUtils.Text),
                                         ),
                                       ),
                                     ),

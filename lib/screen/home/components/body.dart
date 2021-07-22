@@ -52,7 +52,7 @@ class _BodyState extends State<Body> {
                                 height: 30,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorsUtils.Primary),
+                                    color: ColorsUtils.Text),
                                 child: Center(
                                   child: Text(
                                     snapshot.data['data'][index]['number']
@@ -84,7 +84,10 @@ class _BodyState extends State<Body> {
                                                   ['numberOfVerses']
                                               .toString() +
                                           " VERSES",
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: ColorsUtils.Sekunder,
+                                          fontWeight: FontWeight.w800),
                                     ),
                                   )
                                 ],
@@ -96,9 +99,9 @@ class _BodyState extends State<Body> {
                             child: Text(
                               snapshot.data['data'][index]['name']['short'],
                               style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: ColorsUtils.Text),
                               textAlign: TextAlign.end,
                             ),
                           ),
